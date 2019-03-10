@@ -15,7 +15,7 @@ internal class StringCalculatorTest {
   }
 
   @ParameterizedTest
-  @MethodSource("input")
+  @MethodSource("singleInput")
   fun `Single char should return sum as itself as Int`(input: String, expected: Int) {
     assertThat(StringCalculator()(input))
       .isEqualTo(expected)
@@ -23,14 +23,25 @@ internal class StringCalculatorTest {
 
   companion object {
     @JvmStatic
-    fun input() = listOf(
+    fun singleInput() = listOf(
       Arguments.of("0", 0),
       Arguments.of("1", 1)
     )
+
+    @JvmStatic
+    fun input() = listOf(
+      Arguments.of("0,0", 0),
+      Arguments.of("0,1", 1),
+      Arguments.of("1,0", 1),
+      Arguments.of("1,1", 2),
+      Arguments.of("1,2", 3),
+      Arguments.of("100,200", 300)
+    )
   }
 
-  @Test
-  fun `Sum 2 numbers separated by ','`(){
+  @ParameterizedTest
+  @MethodSource("input")
+  fun `Sum 2 numbers separated by ','`() {
     assertThat(StringCalculator()("1,2"))
       .isEqualTo(3)
   }

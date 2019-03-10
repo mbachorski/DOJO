@@ -15,8 +15,8 @@ class StringCalculator {
   }
 
   private fun sumArray(input: String): Int {
-    var sum = 0
-    input.split(",").forEach { sum += it.toInt() }
-    return sum
+    return input.split(",").fold(0){
+      acc: Int, s: String -> acc + s.toInt()
+    }
   }
 }
