@@ -5,7 +5,18 @@ package dojo.katas
  */
 class StringCalculator {
   operator fun invoke(input: String): Int {
-    if (input == "") return 0
-    return input.toInt()
+    return if (input.contains(",")) {
+      sumArray(input)
+    } else if (input == "") {
+      0
+    } else {
+      input.toInt()
+    }
+  }
+
+  private fun sumArray(input: String): Int {
+    var sum = 0
+    input.split(",").forEach { sum += it.toInt() }
+    return sum
   }
 }

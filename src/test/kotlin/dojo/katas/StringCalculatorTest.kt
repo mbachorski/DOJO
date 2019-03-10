@@ -28,4 +28,10 @@ internal class StringCalculatorTest {
       Arguments.of("1", 1)
     )
   }
+
+  @Test
+  fun `Sum 2 numbers separated by ','`(){
+    assertThat(StringCalculator()("1,2"))
+      .isEqualTo(3)
+  }
 }
